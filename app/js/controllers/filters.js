@@ -8,7 +8,8 @@ module.controller('controllers::Filters', ['$scope', 'services::Filters', functi
     scope.new_filter = "";
 
     scope.submit = function() {
-        filters.add(scope.new_filter);
+        if (scope.new_filter != "")
+            filters.add(scope.new_filter);
     };
 
     scope.select = function(filter) {
