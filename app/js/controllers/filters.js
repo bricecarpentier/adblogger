@@ -11,8 +11,8 @@ module.controller('controllers::Filters', ['$scope', 'services::Filters', functi
         filters.add(scope.new_filter);
     };
 
-    scope.select = function(event) {
-        filters.select(event ? event.target.text : undefined);
+    scope.select = function(filter) {
+        filters.select(filter);
     };
 
     scope.remove = function(filter) {

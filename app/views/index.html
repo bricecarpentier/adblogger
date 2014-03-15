@@ -53,7 +53,8 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Current filter : {{ current_filter }} <b class="caret"></b></a>
 				<ul class="dropdown-menu">
                     <li ng-repeat="filter in filters">
-                        <a href="#" ng-click="select($event)">{{ filter }}</a>
+                        <a href="#" ng-click="select(filter)">
+                            <span>{{ filter }}</span>
                             <span ng-click="remove(filter)"
                                   class="pull-right fa fa-minus-circle"
                                   style="margin-top:0.2em;"></span>
