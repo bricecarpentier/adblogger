@@ -16,7 +16,6 @@ module.controller('controllers::Messages', ['$scope', 'services::Logcat', 'servi
     });
 
     function update(messageList) {
-        console.log("[filters] update:", messageList.length);
         scope.messages = messageList.filter(function(item) {
             if (!filters.current) return true;
 
@@ -25,8 +24,6 @@ module.controller('controllers::Messages', ['$scope', 'services::Logcat', 'servi
 
         if (scope.messages.length > MAX_MESSAGES)
             scope.messages.length = MAX_MESSAGES;
-
-        console.log('[filters] update:', scope.messages.length, ' [end]');
     };
 
     setInterval(function() {
