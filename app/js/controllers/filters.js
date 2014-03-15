@@ -19,6 +19,11 @@ module.controller('controllers::Filters', ['$scope', 'services::Filters', functi
         filters.remove(filter);
     }
 
+    scope.newFilterKeyPressed = function(event) {
+        if (event.keyCode == 13)
+            scope.submit();
+    }
+
     filters.on('change', function() {
         scope.current_filter = filters.current || "";
     })

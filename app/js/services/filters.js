@@ -18,7 +18,7 @@ util.inherits(Filters, events.EventEmitter);
 Filters.prototype.add = function addFilter(filter) {
     if (this.filters.indexOf(filter) == -1) {
         this.filters.push(filter);
-        this.serialize();
+        this.select(filter);
     }
 };
 
@@ -26,12 +26,14 @@ Filters.prototype.remove = function(filter) {
     var index = this.filters.indexOf(filter);
     if (index != -1) {
         this.filters.splice(index, 1);
-        this.serialize();
+        if (this.current == filter)
+            this.select();
+        else
+            this.serialize();
     }
 };
 
 Filters.prototype.select = function(filter) {
-    console.log("[filters]", filter);
     if (!filter || (filter && this.filters.indexOf(filter) != -1)) {
         this.current = filter;
         this.serialize();
