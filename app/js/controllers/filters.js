@@ -15,6 +15,10 @@ module.controller('controllers::Filters', ['$scope', 'services::Filters', functi
         filters.select(event ? event.target.text : undefined);
     };
 
+    scope.remove = function(filter) {
+        filters.remove(filter);
+    }
+
     filters.on('change', function() {
         scope.current_filter = filters.current || "";
     })
