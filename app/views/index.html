@@ -54,6 +54,10 @@
 				<ul class="dropdown-menu">
                     <li ng-repeat="filter in filters">
                         <a href="#" ng-click="select($event)">{{ filter }}</a>
+                            <span ng-click="remove(filter)"
+                                  class="pull-right fa fa-minus-circle"
+                                  style="margin-top:0.2em;"></span>
+                        </a>
                     </li>
                     <li class="divider"></li>
                     <li ng-click="select()"><a href="#">Clear filters</a></li>
