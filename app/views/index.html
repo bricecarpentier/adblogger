@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="adblogger">
+<head>
+    <title>adblogger</title>
+	<link href="../bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="../css/font-awesome.min.css" rel="stylesheet" media="screen">
+	<link href="../css/bootflat.css" rel="stylesheet" media="screen">
+	<link href="../css/bootflat-extensions.css" rel="stylesheet" media="screen">
+	<link href="../css/bootflat-square.css" rel="stylesheet" media="screen">
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">ADBLogger</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+		<form class="navbar-form navbar-right" ng-controller="controllers::Filters"
+                                               ng-submit="submit()">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="new filter"
+                       ng-model="new_filter" />
+            </div>
+            <button type="submit">Add</button>
+	    </form>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown" ng-controller="controllers::Devices">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Devices <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+
+                    <li ng-repeat="device in devices">
+                        <a href="#">{{ device.id }}<span ng-if="device.model"> ({{ device.model }})</span></a>
+                    </li>
+				</ul>
+			</li>
+			<li class="dropdown" ng-controller="controllers::Filters">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Current filter : {{ current_filter }} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+                    <li ng-repeat="filter in filters">
+                        <a href="#" ng-click="select($event)">{{ filter }}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li ng-click="select()"><a href="#">Clear filters</a></li>
+				</ul>
+			</li>
+		</ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<table class="table" ng-controller="controllers::Messages">
+		<thead>
+			<th>Message</th>
+			<th class="col-sm-2">Timestamp</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="message in messages">
+				<td>{{ message.message }}</td>
+				<td>{{ message.date.getFullYear() }}-{{ message.date.getMonth() }}-{{ message.date.getDay() }} {{ message.date.getHours() }}:{{ message.date.getMinutes() }}:{{ message.date.getSeconds() }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../js/jquery-1.10.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../js/bootstrap.min.js"></script>
+    <!-- Angular -->
+    <script src="../js/angular.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/services/adb.js"></script>
+    <script src="../js/services/filters.js"></script>
+    <script src="../js/controllers/devices.js"></script>
+    <script src="../js/controllers/messages.js"></script>
+    <script src="../js/controllers/filters.js"></script>
+</body>
+</html>
